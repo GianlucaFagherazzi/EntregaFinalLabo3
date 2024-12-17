@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TipoPersona.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tup2024</a> &gt; <a href="index.source.html" class="el_package">ar.edu.utn.frbb.tup.model</a> &gt; <span class="el_source">TipoPersona.java</span></div><h1>TipoPersona.java</h1><pre class="source lang-java linenums">package ar.edu.utn.frbb.tup.model;
+
+<span class="fc" id="L3">public enum TipoPersona {</span>
+
+<span class="fc" id="L5">    PERSONA_FISICA(&quot;F&quot;),</span>
+<span class="fc" id="L6">    PERSONA_JURIDICA(&quot;J&quot;);</span>
+
+    private final String descripcion;
+
+<span class="fc" id="L10">    TipoPersona(String descripcion) {</span>
+<span class="fc" id="L11">        this.descripcion = descripcion;</span>
+<span class="fc" id="L12">    }</span>
+
+    public String getDescripcion() {
+<span class="nc" id="L15">        return descripcion;</span>
+    }
+
+    public static TipoPersona fromString(String text) {
+<span class="fc bfc" id="L19" title="All 2 branches covered.">        for (TipoPersona tipo : TipoPersona.values()) {</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">            if (tipo.descripcion.equalsIgnoreCase(text)) {</span>
+<span class="fc" id="L21">                return tipo;</span>
+            }
+        }
+<span class="fc" id="L24">        throw new IllegalArgumentException(&quot;No se pudo encontrar un TipoPersona con la descripción: &quot; + text);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

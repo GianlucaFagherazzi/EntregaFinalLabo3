@@ -32,7 +32,6 @@ public class ClienteDao extends AbstractBaseDao{
 
     public void save(Cliente cliente) {
         ClienteEntity entity = new ClienteEntity(cliente);
-        
         getInMemoryDatabase().put(entity.getId(), entity);
     }
 

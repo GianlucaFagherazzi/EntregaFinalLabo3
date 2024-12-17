@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PrestamoConsultaDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tup2024</a> &gt; <a href="index.source.html" class="el_package">ar.edu.utn.frbb.tup.controller</a> &gt; <span class="el_source">PrestamoConsultaDto.java</span></div><h1>PrestamoConsultaDto.java</h1><pre class="source lang-java linenums">package ar.edu.utn.frbb.tup.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import ar.edu.utn.frbb.tup.model.PrestamoConsultaCliente;
+
+public class PrestamoConsultaDto {
+    private long numeroCliente;
+    private List&lt;PrestamoConsultaCliente&gt; prestamos;
+
+<span class="nc" id="L12">    public PrestamoConsultaDto(long dni) {</span>
+<span class="nc" id="L13">        this.numeroCliente = dni;</span>
+<span class="nc" id="L14">        List&lt;PrestamoConsultaCliente&gt; prestamos = new ArrayList&lt;PrestamoConsultaCliente&gt;();</span>
+<span class="nc" id="L15">    }</span>
+
+    public long getNumeroCliente() {
+<span class="nc" id="L18">        return numeroCliente;</span>
+    }
+
+    public void setNumeroCliente(long numeroCliente) {
+<span class="nc" id="L22">        this.numeroCliente = numeroCliente;</span>
+<span class="nc" id="L23">    }</span>
+
+    public List&lt;PrestamoConsultaCliente&gt; getPrestamos() {
+<span class="nc" id="L26">        return prestamos;</span>
+    }
+
+    public void setPrestamos(List&lt;PrestamoConsultaCliente&gt; prestamos) {
+<span class="nc" id="L30">        this.prestamos = prestamos;</span>
+<span class="nc" id="L31">    }</span>
+
+    public void addPrestamos(PrestamoConsultaCliente prestamo) {
+<span class="nc" id="L34">        this.prestamos.add(prestamo);</span>
+<span class="nc" id="L35">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

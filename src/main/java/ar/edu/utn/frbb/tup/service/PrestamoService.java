@@ -107,8 +107,8 @@ public class PrestamoService {
     public PrestamoConsultaDto pedirConsultaPrestamos(long dni) {
         PrestamoConsultaDto consulta = new PrestamoConsultaDto(dni);
 
-        List<Prestamo> prestamosCliente = getPrestamosCliente((int) dni); //
-        if (prestamosCliente.isEmpty() || prestamosCliente.get(0) == null) {
+        List<Prestamo> prestamosCliente = getPrestamosCliente((int) dni);
+        if (prestamosCliente.isEmpty()) {
             throw new IllegalArgumentException("El cliente " + dni + " no ha pedido prestamos");
         }
 

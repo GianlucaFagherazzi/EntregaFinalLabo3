@@ -17,13 +17,13 @@ public class CuotaService {
     }
 
     //Genera un numero random entre 1 y la cantidad de cuotas del prestamo
-    private static int generarRandomCantCuotas(int cantCuotas){
+    protected static int generarRandomCantCuotas(int cantCuotas){
         Random random = new Random(System.currentTimeMillis());
         return random.nextInt(cantCuotas) + 1; // Rango: 1 a cantCuotas
     }
     
 
-    private static double calcularMontoCuota(Prestamo prestamo){
+    protected static double calcularMontoCuota(Prestamo prestamo){
         return ( prestamo.getMontoPrestamo() + prestamo.getInteresTotal() ) / prestamo.getPlazoMeses();
     }
 }

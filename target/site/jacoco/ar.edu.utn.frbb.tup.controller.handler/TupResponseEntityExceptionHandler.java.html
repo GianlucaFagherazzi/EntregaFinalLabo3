@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TupResponseEntityExceptionHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tup2024</a> &gt; <a href="index.source.html" class="el_package">ar.edu.utn.frbb.tup.controller.handler</a> &gt; <span class="el_source">TupResponseEntityExceptionHandler.java</span></div><h1>TupResponseEntityExceptionHandler.java</h1><pre class="source lang-java linenums">package ar.edu.utn.frbb.tup.controller.handler;
+
+import ar.edu.utn.frbb.tup.model.exception.TipoCuentaAlreadyExistsException;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+@ControllerAdvice
+<span class="nc" id="L15">public class TupResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {</span>
+
+    @ExceptionHandler(value = { TipoCuentaAlreadyExistsException.class, IllegalArgumentException.class })
+    protected ResponseEntity&lt;Object&gt; handleMateriaNotFound(Exception ex, WebRequest request) {
+<span class="nc" id="L19">        String exceptionMessage = ex.getMessage();</span>
+<span class="nc" id="L20">        CustomApiError error = new CustomApiError();</span>
+<span class="nc" id="L21">        error.setErrorMessage(exceptionMessage);</span>
+<span class="nc" id="L22">        return handleExceptionInternal(ex, error,</span>
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler(value = { IllegalStateException.class })
+    protected ResponseEntity&lt;Object&gt; handleConflict(RuntimeException ex, WebRequest request) {
+<span class="nc" id="L28">        String exceptionMessage = ex.getMessage();</span>
+<span class="nc" id="L29">        CustomApiError error = new CustomApiError();</span>
+<span class="nc" id="L30">        error.setErrorCode(1234);</span>
+<span class="nc" id="L31">        error.setErrorMessage(exceptionMessage);</span>
+<span class="nc" id="L32">        return handleExceptionInternal(ex, error,</span>
+                new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @Override
+    protected ResponseEntity&lt;Object&gt; handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (body == null) {</span>
+<span class="nc" id="L39">            CustomApiError error = new CustomApiError();</span>
+<span class="nc" id="L40">            error.setErrorMessage(ex.getMessage());</span>
+<span class="nc" id="L41">            body = error;</span>
+        }
+
+<span class="nc" id="L44">        return new ResponseEntity(body, headers, status);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

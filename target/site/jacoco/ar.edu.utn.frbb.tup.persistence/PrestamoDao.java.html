@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PrestamoDao.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tup2024</a> &gt; <a href="index.source.html" class="el_package">ar.edu.utn.frbb.tup.persistence</a> &gt; <span class="el_source">PrestamoDao.java</span></div><h1>PrestamoDao.java</h1><pre class="source lang-java linenums">package ar.edu.utn.frbb.tup.persistence;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import ar.edu.utn.frbb.tup.model.Prestamo;
+import ar.edu.utn.frbb.tup.persistence.entity.PrestamoEntity;
+
+import org.springframework.stereotype.Component;
+
+@Component
+<span class="nc" id="L13">public class PrestamoDao extends AbstractBaseDao {</span>
+<span class="fc" id="L14">    private static final AtomicInteger idCounter = new AtomicInteger(1); // Comienza desde 1</span>
+
+    private int generarIdUnico() {
+<span class="nc" id="L17">        return idCounter.getAndIncrement(); // Obtiene el valor actual y luego lo incrementa</span>
+    }
+
+    public void almacenarDatosPrestamo(Prestamo prestamo) {
+<span class="nc" id="L21">        PrestamoEntity prestamoEntity = new PrestamoEntity(prestamo, generarIdUnico());</span>
+<span class="nc" id="L22">        getInMemoryDatabase().put(prestamoEntity.getId(), prestamoEntity);</span>
+<span class="nc" id="L23">    }</span>
+
+    public List&lt;Prestamo&gt; getPrestamosByCliente(int dni) {
+<span class="nc" id="L26">        List&lt;Prestamo&gt; prestamosCliente = new ArrayList&lt;Prestamo&gt;();</span>
+
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        for (Object valor : getInMemoryDatabase().values()) {</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">            if (valor.getClass().equals(PrestamoEntity.class)) {</span>
+<span class="nc" id="L30">                PrestamoEntity prestamo = (PrestamoEntity) valor;</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">                if (prestamo.getNumeroCliente() == dni) {</span>
+<span class="nc" id="L32">                    prestamosCliente.add(prestamo.toPrestamo());</span>
+                }
+            }
+<span class="nc" id="L35">        }</span>
+
+<span class="nc" id="L37">        return prestamosCliente;</span>
+    }
+
+    @Override
+    protected String getEntityName() {
+<span class="nc" id="L42">        return &quot;Prestamo&quot;;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
