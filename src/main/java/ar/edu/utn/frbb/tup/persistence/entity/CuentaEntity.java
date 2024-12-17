@@ -13,6 +13,8 @@ public class CuentaEntity extends BaseEntity{
     private String tipoCuenta;
     private String tipoMoneda;
 
+    public CuentaEntity() {
+    }
     public CuentaEntity(Cuenta cuenta) {
         super(cuenta.getNumeroCuenta());
         this.titular = cuenta.getTitular();

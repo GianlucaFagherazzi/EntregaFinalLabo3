@@ -105,56 +105,42 @@ import org.springframework.stereotype.Service;
 <span class="nc" id="L105">    }</span>
 
     public PrestamoConsultaDto pedirConsultaPrestamos(long dni) {
-<span class="nc" id="L108">        PrestamoConsultaDto consulta = new PrestamoConsultaDto(dni);</span>
+<span class="fc" id="L108">        PrestamoConsultaDto consulta = new PrestamoConsultaDto(dni);</span>
 
-<span class="nc" id="L110">        List&lt;Prestamo&gt; prestamosCliente = getPrestamosCliente((int) dni);</span>
-<span class="nc bnc" id="L111" title="All 2 branches missed.">        if (prestamosCliente.isEmpty()) {</span>
-<span class="nc" id="L112">            throw new IllegalArgumentException(&quot;El cliente &quot; + dni + &quot; no ha pedido prestamos&quot;);</span>
+<span class="fc" id="L110">        List&lt;Prestamo&gt; prestamosCliente = getPrestamosCliente((int) dni);</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        if (prestamosCliente.isEmpty()) {</span>
+<span class="fc" id="L112">            throw new IllegalArgumentException(&quot;El cliente &quot; + dni + &quot; no ha pedido prestamos&quot;);</span>
         }
 
-<span class="nc" id="L115">        List&lt;PrestamoConsultaCliente&gt; prestamos = new ArrayList&lt;PrestamoConsultaCliente&gt;();</span>
-<span class="nc bnc" id="L116" title="All 2 branches missed.">        for (Prestamo p : prestamosCliente) {</span>
-<span class="nc" id="L117">            PrestamoConsultaCliente prestamoCliente = new PrestamoConsultaCliente(p);</span>
-<span class="nc" id="L118">            prestamoCliente.setPrestamoId(p.getIdPrestamo());</span>
-<span class="nc" id="L119">            prestamoCliente.setPagosRealizados(p.getPlanPagos().size());</span>
-<span class="nc" id="L120">            prestamoCliente.setSaldoRestante(calcularSaldoRestante(p, prestamoCliente.getPagosRealizados()));</span>
-<span class="nc" id="L121">            prestamos.add(prestamoCliente);</span>
-<span class="nc" id="L122">        }</span>
-<span class="nc" id="L123">        consulta.setPrestamos(prestamos);</span>
+<span class="fc" id="L115">        List&lt;PrestamoConsultaCliente&gt; prestamos = new ArrayList&lt;PrestamoConsultaCliente&gt;();</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        for (Prestamo p : prestamosCliente) {</span>
+<span class="fc" id="L117">            PrestamoConsultaCliente prestamoCliente = new PrestamoConsultaCliente(p);</span>
+<span class="fc" id="L118">            prestamos.add(prestamoCliente);</span>
+<span class="fc" id="L119">        }</span>
+<span class="fc" id="L120">        consulta.setPrestamos(prestamos);</span>
 
-<span class="nc" id="L125">        return consulta;</span>
+<span class="fc" id="L122">        return consulta;</span>
     }
 
     List&lt;Prestamo&gt; getPrestamosCliente(int dni) {
-<span class="nc" id="L129">        return prestamoDao.getPrestamosByCliente(dni);</span>
-    }
-
-    private double calcularSaldoRestante(Prestamo prestamo, int pagosRealizados) {
-<span class="nc" id="L133">        double saldoTotal = prestamo.getMontoPrestamo() + prestamo.getInteresTotal();</span>
-<span class="nc" id="L134">        double saldoActual = 0;</span>
-<span class="nc bnc" id="L135" title="All 2 branches missed.">        if (pagosRealizados != 0) {</span>
-<span class="nc" id="L136">            saldoActual = (prestamo.getPlanPagos().get(0).getMonto()) * pagosRealizados;</span>
-        }
-
-<span class="nc" id="L139">        return saldoTotal - saldoActual;</span>
-
+<span class="fc" id="L126">        return prestamoDao.getPrestamosByCliente(dni);</span>
     }
 
     public static String verificaScore(long dni) {
-<span class="nc" id="L144">        Random random = new Random();</span>
-<span class="nc" id="L145">        long suma = 0;</span>
+<span class="nc" id="L130">        Random random = new Random();</span>
+<span class="nc" id="L131">        long suma = 0;</span>
 
         // Sumar los dígitos del número
-<span class="nc bnc" id="L148" title="All 2 branches missed.">        while (dni &gt; 0) {</span>
-<span class="nc" id="L149">            suma += dni % 10;</span>
-<span class="nc" id="L150">            dni /= 10;</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        while (dni &gt; 0) {</span>
+<span class="nc" id="L135">            suma += dni % 10;</span>
+<span class="nc" id="L136">            dni /= 10;</span>
         }
 
         // Evaluar las condiciones
-<span class="nc bnc" id="L154" title="All 4 branches missed.">        if (suma &lt;= 5 || !random.nextBoolean()) { // Tiene un 50/50 de ser true o false</span>
-<span class="nc" id="L155">            return &quot;ERROR&quot;;</span>
+<span class="nc bnc" id="L140" title="All 4 branches missed.">        if (suma &lt;= 5 || !random.nextBoolean()) { // Tiene un 50/50 de ser true o false</span>
+<span class="nc" id="L141">            return &quot;ERROR&quot;;</span>
         }
-<span class="nc" id="L157">        return &quot;OK&quot;;</span>
+<span class="nc" id="L143">        return &quot;OK&quot;;</span>
     }
 
 }

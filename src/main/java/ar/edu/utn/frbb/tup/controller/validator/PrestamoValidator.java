@@ -7,7 +7,6 @@ public class PrestamoValidator {
     public static void validate(PrestamoDto prestamoDto){
         validateMonto(prestamoDto.getMontoPrestamo());
     }
-    
 
     private static void validateMonto(double monto){
         if (monto < 0){

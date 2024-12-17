@@ -20,7 +20,7 @@ public class ClienteDao extends AbstractBaseDao{
         if (getInMemoryDatabase().get(dni) == null)
             return null;
             
-        Cliente cliente =   ((ClienteEntity) getInMemoryDatabase().get(dni)).toCliente();
+        Cliente cliente = ((ClienteEntity) getInMemoryDatabase().get(dni)).toCliente();
         if (loadComplete) {
             for (Cuenta cuenta :
                     cuentaDao.getCuentasByCliente(dni)) {

@@ -19,31 +19,31 @@ public class ClienteEntity extends BaseEntity {
     private List&lt;Integer&gt; cuentas;
 
     public ClienteEntity(Cliente cliente) {
-<span class="nc" id="L22">        super(cliente.getDni());</span>
-<span class="nc bnc" id="L23" title="All 2 branches missed.">        this.tipoPersona = cliente.getTipoPersona() != null ? cliente.getTipoPersona().getDescripcion() : null;</span>
-<span class="nc" id="L24">        this.banco = cliente.getBanco();</span>
-<span class="nc" id="L25">        this.nombre = cliente.getNombre();</span>
-<span class="nc" id="L26">        this.apellido = cliente.getApellido();</span>
-<span class="nc" id="L27">        this.fechaAlta = cliente.getFechaAlta();</span>
-<span class="nc" id="L28">        this.fechaNacimiento = cliente.getFechaNacimiento();</span>
-<span class="nc" id="L29">        this.cuentas = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L30" title="All 4 branches missed.">        if (cliente.getCuentas() != null &amp;&amp; !cliente.getCuentas().isEmpty()) {</span>
+<span class="fc" id="L22">        super(cliente.getDni());</span>
+<span class="pc bpc" id="L23" title="1 of 2 branches missed.">        this.tipoPersona = cliente.getTipoPersona() != null ? cliente.getTipoPersona().getDescripcion() : null;</span>
+<span class="fc" id="L24">        this.banco = cliente.getBanco();</span>
+<span class="fc" id="L25">        this.nombre = cliente.getNombre();</span>
+<span class="fc" id="L26">        this.apellido = cliente.getApellido();</span>
+<span class="fc" id="L27">        this.fechaAlta = cliente.getFechaAlta();</span>
+<span class="fc" id="L28">        this.fechaNacimiento = cliente.getFechaNacimiento();</span>
+<span class="fc" id="L29">        this.cuentas = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L30" title="2 of 4 branches missed.">        if (cliente.getCuentas() != null &amp;&amp; !cliente.getCuentas().isEmpty()) {</span>
 <span class="nc bnc" id="L31" title="All 2 branches missed.">            for (Cuenta c: cliente.getCuentas()) {</span>
 <span class="nc" id="L32">                cuentas.add(c.getNumeroCuenta());</span>
 <span class="nc" id="L33">            }</span>
         }
-<span class="nc" id="L35">    }</span>
+<span class="fc" id="L35">    }</span>
 
     public Cliente toCliente() {
-<span class="nc" id="L38">        Cliente cliente = new Cliente();</span>
-<span class="nc" id="L39">        cliente.setDni(this.getId());</span>
-<span class="nc" id="L40">        cliente.setNombre(this.nombre);</span>
-<span class="nc" id="L41">        cliente.setApellido(this.apellido);</span>
-<span class="nc" id="L42">        cliente.setBanco(this.banco);</span>
-<span class="nc" id="L43">        cliente.setTipoPersona(TipoPersona.fromString(String.valueOf(this.tipoPersona)));</span>
-<span class="nc" id="L44">        cliente.setFechaAlta(this.fechaAlta);</span>
-<span class="nc" id="L45">        cliente.setFechaNacimiento(this.fechaNacimiento);</span>
-<span class="nc" id="L46">        return cliente;</span>
+<span class="fc" id="L38">        Cliente cliente = new Cliente();</span>
+<span class="fc" id="L39">        cliente.setDni(this.getId());</span>
+<span class="fc" id="L40">        cliente.setNombre(this.nombre);</span>
+<span class="fc" id="L41">        cliente.setApellido(this.apellido);</span>
+<span class="fc" id="L42">        cliente.setBanco(this.banco);</span>
+<span class="fc" id="L43">        cliente.setTipoPersona(TipoPersona.fromString(String.valueOf(this.tipoPersona)));</span>
+<span class="fc" id="L44">        cliente.setFechaAlta(this.fechaAlta);</span>
+<span class="fc" id="L45">        cliente.setFechaNacimiento(this.fechaNacimiento);</span>
+<span class="fc" id="L46">        return cliente;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

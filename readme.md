@@ -20,12 +20,12 @@ Este proyecto es un servicio RESTful desarrollado en Java utilizando Spring Boot
 ## Ejemplos
 ### Cliente
 {
-    "nombre": "Juan",
-    "apellido": "Pérez",
+    "nombre": "Frodo",
+    "apellido": "Bolson",
     "dni": 12345678,
     "fechaNacimiento": "1980-10-10",
     "tipoPersona": "F",
-    "banco": "Banco Nación"
+    "banco": "Banco nacional de hobbiton"
 }
 
 ### Cuenta

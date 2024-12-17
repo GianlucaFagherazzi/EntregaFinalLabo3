@@ -13,31 +13,33 @@ public class CuentaEntity extends BaseEntity{
     private String tipoCuenta;
     private String tipoMoneda;
 
+<span class="nc" id="L16">    public CuentaEntity() {</span>
+<span class="nc" id="L17">    }</span>
     public CuentaEntity(Cuenta cuenta) {
-<span class="nc" id="L17">        super(cuenta.getNumeroCuenta());</span>
-<span class="nc" id="L18">        this.titular = cuenta.getTitular();</span>
-<span class="nc" id="L19">        this.fechaCreacion = cuenta.getFechaCreacion();</span>
-<span class="nc" id="L20">        this.balance = cuenta.getBalance();</span>
-<span class="nc" id="L21">        this.tipoCuenta = cuenta.getTipoCuenta().getDescripcion();</span>
-<span class="nc" id="L22">        this.tipoMoneda = cuenta.getMoneda().getDescripcion();</span>
-<span class="nc" id="L23">    }</span>
+<span class="fc" id="L19">        super(cuenta.getNumeroCuenta());</span>
+<span class="fc" id="L20">        this.titular = cuenta.getTitular();</span>
+<span class="fc" id="L21">        this.fechaCreacion = cuenta.getFechaCreacion();</span>
+<span class="fc" id="L22">        this.balance = cuenta.getBalance();</span>
+<span class="fc" id="L23">        this.tipoCuenta = cuenta.getTipoCuenta().getDescripcion();</span>
+<span class="fc" id="L24">        this.tipoMoneda = cuenta.getMoneda().getDescripcion();</span>
+<span class="fc" id="L25">    }</span>
 
     public Cuenta toCuenta() {
-<span class="nc" id="L26">        Cuenta cuenta = new Cuenta();</span>
-<span class="nc" id="L27">        cuenta.setNumeroCuenta(this.getId());</span>
-<span class="nc" id="L28">        cuenta.setBalance(this.balance);</span>
-<span class="nc" id="L29">        cuenta.setFechaCreacion(this.fechaCreacion);</span>
-<span class="nc" id="L30">        cuenta.setTipoCuenta(TipoCuenta.fromString(String.valueOf(this.tipoCuenta)));</span>
-<span class="nc" id="L31">        cuenta.setMoneda(TipoMoneda.fromString(String.valueOf(this.tipoMoneda)));</span>
-<span class="nc" id="L32">        return cuenta;</span>
+<span class="fc" id="L28">        Cuenta cuenta = new Cuenta();</span>
+<span class="fc" id="L29">        cuenta.setNumeroCuenta(this.getId());</span>
+<span class="fc" id="L30">        cuenta.setBalance(this.balance);</span>
+<span class="fc" id="L31">        cuenta.setFechaCreacion(this.fechaCreacion);</span>
+<span class="fc" id="L32">        cuenta.setTipoCuenta(TipoCuenta.fromString(String.valueOf(this.tipoCuenta)));</span>
+<span class="fc" id="L33">        cuenta.setMoneda(TipoMoneda.fromString(String.valueOf(this.tipoMoneda)));</span>
+<span class="fc" id="L34">        return cuenta;</span>
     }
 
     public Integer getTitular() {
-<span class="nc" id="L36">        return titular;</span>
+<span class="fc" id="L38">        return titular;</span>
     }
 
     public void setBalance(double balance) {
-<span class="nc" id="L40">        this.balance = balance;</span>
-<span class="nc" id="L41">    }</span>
+<span class="fc" id="L42">        this.balance = balance;</span>
+<span class="fc" id="L43">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

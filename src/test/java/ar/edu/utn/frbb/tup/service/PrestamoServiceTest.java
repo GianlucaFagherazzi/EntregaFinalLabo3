@@ -30,9 +30,6 @@ class PrestamoServiceTest {
     @InjectMocks
     private PrestamoService prestamoService;
 
-    @InjectMocks
-    private PrestamoConsultaDto prestamoConsultaDto;
-
     @BeforeAll
     public void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -69,17 +66,17 @@ class PrestamoServiceTest {
 
         assertNotNull(prestamoDao.getPrestamosByCliente(123456789));
         assertEquals(prestamoDao.getPrestamosByCliente(123456789).size(), prestamosCliente.size());
-        // assertDoesNotThrow(() -> prestamoService.pedirConsultaPrestamos(123456789));
-        // assertTrue( (prestamoService.pedirConsultaPrestamos(123456789) instanceof PrestamoConsultaDto));
+        assertDoesNotThrow(() -> prestamoService.pedirConsultaPrestamos(123456789));
+        assertTrue( (prestamoService.pedirConsultaPrestamos(123456789) instanceof PrestamoConsultaDto));
     }
 
-    // @Test
-    // void pedirConsultaPrestamosFalloTest() {
-    //     List<Prestamo> prestamosCliente = new ArrayList<Prestamo>();
+    @Test
+    void pedirConsultaPrestamosFalloTest() {
+        List<Prestamo> prestamosCliente = new ArrayList<Prestamo>();
 
-    //     when(prestamoDao.getPrestamosByCliente(anyInt())).thenReturn(prestamosCliente);
-    //     assertThrows(IllegalArgumentException.class, () -> {
-    //         prestamoService.pedirConsultaPrestamos(123456789);
-    //     });
-    // }
+        when(prestamoDao.getPrestamosByCliente(anyInt())).thenReturn(prestamosCliente);
+        assertThrows(IllegalArgumentException.class, () -> {
+            prestamoService.pedirConsultaPrestamos(123456789);
+        });
+    }
 }

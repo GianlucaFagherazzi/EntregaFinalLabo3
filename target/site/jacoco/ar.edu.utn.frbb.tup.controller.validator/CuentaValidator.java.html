@@ -3,22 +3,22 @@ import ar.edu.utn.frbb.tup.controller.CuentaDto;
 import org.springframework.stereotype.Component;
 
 @Component
-<span class="nc" id="L6">public class CuentaValidator {</span>
+<span class="fc" id="L6">public class CuentaValidator {</span>
     public static void validate(CuentaDto cuentaDto) {
-<span class="nc" id="L8">        validateTipoMoneda(cuentaDto);</span>
-<span class="nc" id="L9">        validateTipoCuenta(cuentaDto);</span>
-<span class="nc" id="L10">    }</span>
+<span class="fc" id="L8">        validateTipoMoneda(cuentaDto);</span>
+<span class="fc" id="L9">        validateTipoCuenta(cuentaDto);</span>
+<span class="fc" id="L10">    }</span>
 
     protected static void validateTipoMoneda(CuentaDto cuentaDto) {
-<span class="nc bnc" id="L13" title="All 4 branches missed.">        if ((!&quot;PESOS&quot;.equals(cuentaDto.getMoneda())) &amp;&amp; (!&quot;DOLARES&quot;.equals(cuentaDto.getMoneda()))) {</span>
-<span class="nc" id="L14">            throw new IllegalArgumentException(&quot;La moneda: &quot; + cuentaDto.getMoneda() + &quot; no es soportada&quot;);</span>
+<span class="pc bpc" id="L13" title="1 of 4 branches missed.">        if ((!&quot;PESOS&quot;.equals(cuentaDto.getMoneda())) &amp;&amp; (!&quot;DOLARES&quot;.equals(cuentaDto.getMoneda()))) {</span>
+<span class="fc" id="L14">            throw new IllegalArgumentException(&quot;La moneda: &quot; + cuentaDto.getMoneda() + &quot; no es soportada&quot;);</span>
         }
-<span class="nc" id="L16">    }</span>
+<span class="fc" id="L16">    }</span>
 
     protected static void validateTipoCuenta(CuentaDto cuentaDto) {
-<span class="nc bnc" id="L19" title="All 4 branches missed.">        if ((!&quot;CAJA_AHORRO&quot;.equals(cuentaDto.getTipoCuenta())) &amp;&amp; (!&quot;CUENTA_CORRIENTE&quot;.equals(cuentaDto.getTipoCuenta()))) {</span>
-<span class="nc" id="L20">            throw new IllegalArgumentException(&quot;La cuenta del tipo &quot; + cuentaDto.getTipoCuenta() + &quot; no es correcta&quot;);</span>
+<span class="pc bpc" id="L19" title="1 of 4 branches missed.">        if ((!&quot;CAJA_AHORRO&quot;.equals(cuentaDto.getTipoCuenta())) &amp;&amp; (!&quot;CUENTA_CORRIENTE&quot;.equals(cuentaDto.getTipoCuenta()))) {</span>
+<span class="fc" id="L20">            throw new IllegalArgumentException(&quot;La cuenta del tipo &quot; + cuentaDto.getTipoCuenta() + &quot; no es correcta&quot;);</span>
         }
-<span class="nc" id="L22">    }</span>
+<span class="fc" id="L22">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

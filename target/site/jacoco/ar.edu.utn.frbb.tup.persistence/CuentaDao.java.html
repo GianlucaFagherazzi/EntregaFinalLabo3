@@ -10,58 +10,58 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 
 @Component
-<span class="nc" id="L13">public class CuentaDao extends AbstractBaseDao {</span>
+<span class="fc" id="L13">public class CuentaDao extends AbstractBaseDao {</span>
 
     public Cuenta find(int id) {
-<span class="nc bnc" id="L16" title="All 2 branches missed.">        if ((getInMemoryDatabase().get(id)) == null) {</span>
-<span class="nc" id="L17">            return null;</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        if ((getInMemoryDatabase().get(id)) == null) {</span>
+<span class="fc" id="L17">            return null;</span>
         }
-<span class="nc" id="L19">        return ((CuentaEntity) getInMemoryDatabase().get(id)).toCuenta();</span>
+<span class="fc" id="L19">        return ((CuentaEntity) getInMemoryDatabase().get(id)).toCuenta();</span>
     }
 
     public void save(Cuenta cuenta) {
-<span class="nc" id="L23">        CuentaEntity entity = new CuentaEntity(cuenta);</span>
-<span class="nc" id="L24">        getInMemoryDatabase().put(entity.getId(), entity);</span>
-<span class="nc" id="L25">    }</span>
+<span class="fc" id="L23">        CuentaEntity entity = new CuentaEntity(cuenta);</span>
+<span class="fc" id="L24">        getInMemoryDatabase().put(entity.getId(), entity);</span>
+<span class="fc" id="L25">    }</span>
 
     public void update(Cuenta cuenta) {
         // Obtener la base de datos en memoria
-<span class="nc" id="L29">        Map&lt;Integer, Object&gt; database = getInMemoryDatabase();</span>
+<span class="fc" id="L29">        Map&lt;Integer, Object&gt; database = getInMemoryDatabase();</span>
 
         // Recorrer la base de datos
-<span class="nc bnc" id="L32" title="All 2 branches missed.">        for (Object object : database.values()) {</span>
-<span class="nc" id="L33">            CuentaEntity cuentaEntity = (CuentaEntity) object;</span>
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        for (Object object : database.values()) {</span>
+<span class="fc" id="L33">            CuentaEntity cuentaEntity = (CuentaEntity) object;</span>
             // Verificar si el número de cuenta coincide
-<span class="nc bnc" id="L35" title="All 2 branches missed.">            if (cuentaEntity.getId() == cuenta.getNumeroCuenta()) {</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">            if (cuentaEntity.getId() == cuenta.getNumeroCuenta()) {</span>
                 // Actualizar el balance de la cuenta
-<span class="nc" id="L37">                cuentaEntity.setBalance(cuenta.getBalance());</span>
+<span class="fc" id="L37">                cuentaEntity.setBalance(cuenta.getBalance());</span>
 
                 // Salir del bucle una vez que la cuenta ha sido actualizada
-<span class="nc" id="L40">                break;</span>
+<span class="fc" id="L40">                break;</span>
             }
 <span class="nc" id="L42">        }</span>
-<span class="nc" id="L43">    }</span>
+<span class="fc" id="L43">    }</span>
 
     public List&lt;Cuenta&gt; getCuentasByCliente(Integer dni) {
-<span class="nc" id="L46">        List&lt;Cuenta&gt; cuentasDelCliente = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L46">        List&lt;Cuenta&gt; cuentasDelCliente = new ArrayList&lt;&gt;();</span>
 
-<span class="nc bnc" id="L48" title="All 2 branches missed.">        for (Object object : getInMemoryDatabase().values()) {</span>
-<span class="nc bnc" id="L49" title="All 2 branches missed.">            if (object.getClass().equals(CuentaEntity.class)) {</span>
-<span class="nc" id="L50">                CuentaEntity cuenta = (CuentaEntity) object;</span>
-<span class="nc bnc" id="L51" title="All 2 branches missed.">                if (cuenta.getTitular().equals(dni)) {</span>
-<span class="nc" id="L52">                    Cuenta cuentaB = cuenta.toCuenta();</span>
-<span class="nc" id="L53">                    cuentaB.setTitular(dni);</span>
-<span class="nc" id="L54">                    cuentasDelCliente.add(cuentaB);</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        for (Object object : getInMemoryDatabase().values()) {</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">            if (object.getClass().equals(CuentaEntity.class)) {</span>
+<span class="fc" id="L50">                CuentaEntity cuenta = (CuentaEntity) object;</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">                if (cuenta.getTitular().equals(dni)) {</span>
+<span class="fc" id="L52">                    Cuenta cuentaB = cuenta.toCuenta();</span>
+<span class="fc" id="L53">                    cuentaB.setTitular(dni);</span>
+<span class="fc" id="L54">                    cuentasDelCliente.add(cuentaB);</span>
                 }
             }
 
-<span class="nc" id="L58">        }</span>
-<span class="nc" id="L59">        return cuentasDelCliente;</span>
+<span class="fc" id="L58">        }</span>
+<span class="fc" id="L59">        return cuentasDelCliente;</span>
     }
 
     @Override
     protected String getEntityName() {
-<span class="nc" id="L64">        return &quot;Cuenta&quot;;</span>
+<span class="fc" id="L64">        return &quot;Cuenta&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

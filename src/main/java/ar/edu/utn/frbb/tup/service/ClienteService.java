@@ -67,8 +67,8 @@ public class ClienteService {
     }
 
     public List<Cliente> obtenerTodosClientes() {
-        // Obtiene todos los clientes desde la base de datos
         List<Cliente> clientes = clienteDao.findAll();
         return clientes.isEmpty() ? null : clientes;
     }
+    
 }

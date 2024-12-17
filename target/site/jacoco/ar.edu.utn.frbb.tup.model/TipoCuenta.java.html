@@ -13,12 +13,12 @@
     }
 
     public static TipoCuenta fromString(String texto) {
-<span class="nc bnc" id="L16" title="All 2 branches missed.">        for (TipoCuenta tipo : TipoCuenta.values()){</span>
-<span class="nc bnc" id="L17" title="All 2 branches missed.">            if(tipo.descripcion.equalsIgnoreCase(texto)){</span>
-<span class="nc" id="L18">                return tipo;</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        for (TipoCuenta tipo : TipoCuenta.values()){</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">            if(tipo.descripcion.equalsIgnoreCase(texto)){</span>
+<span class="fc" id="L18">                return tipo;</span>
             }
         }
-<span class="nc" id="L21">        throw new IllegalArgumentException(&quot;TipoDeCuenta invalido, &quot;+texto+&quot; no fue encontrado&quot;);</span>
+<span class="fc" id="L21">        throw new IllegalArgumentException(&quot;TipoDeCuenta invalido, &quot;+texto+&quot; no fue encontrado&quot;);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

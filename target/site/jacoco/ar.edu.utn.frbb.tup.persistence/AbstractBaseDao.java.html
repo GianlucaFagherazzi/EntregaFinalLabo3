@@ -3,15 +3,15 @@
 import java.util.HashMap;
 import java.util.Map;
 
-<span class="nc" id="L6">public abstract class AbstractBaseDao {</span>
+<span class="fc" id="L6">public abstract class AbstractBaseDao {</span>
 <span class="fc" id="L7">    protected static Map&lt;String, Map&lt;Integer, Object&gt;&gt; poorMansDatabase = new HashMap&lt;&gt;();</span>
     protected abstract String getEntityName();
 
     protected Map&lt;Integer, Object&gt; getInMemoryDatabase() {
-<span class="nc bnc" id="L11" title="All 2 branches missed.">        if (poorMansDatabase.get(getEntityName()) == null) {</span>
-<span class="nc" id="L12">            poorMansDatabase.put(getEntityName(),new HashMap&lt;&gt;());</span>
+<span class="fc bfc" id="L11" title="All 2 branches covered.">        if (poorMansDatabase.get(getEntityName()) == null) {</span>
+<span class="fc" id="L12">            poorMansDatabase.put(getEntityName(),new HashMap&lt;&gt;());</span>
         }
-<span class="nc" id="L14">        return poorMansDatabase.get(getEntityName());   </span>
+<span class="fc" id="L14">        return poorMansDatabase.get(getEntityName());   </span>
     } 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

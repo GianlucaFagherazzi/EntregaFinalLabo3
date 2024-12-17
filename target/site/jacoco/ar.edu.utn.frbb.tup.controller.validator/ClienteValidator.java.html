@@ -6,17 +6,17 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 @Component
-<span class="nc" id="L9">public class ClienteValidator {</span>
+<span class="fc" id="L9">public class ClienteValidator {</span>
     public void validate(ClienteDto clienteDto) {
-<span class="nc bnc" id="L11" title="All 4 branches missed.">        if (!&quot;F&quot;.equals(clienteDto.getTipoPersona()) &amp;&amp; !&quot;J&quot;.equals(clienteDto.getTipoPersona())) {</span>
-<span class="nc" id="L12">            throw new IllegalArgumentException(&quot;El tipo de persona no es correcto&quot;);</span>
+<span class="pc bpc" id="L11" title="1 of 4 branches missed.">        if (!&quot;F&quot;.equals(clienteDto.getTipoPersona()) &amp;&amp; !&quot;J&quot;.equals(clienteDto.getTipoPersona())) {</span>
+<span class="fc" id="L12">            throw new IllegalArgumentException(&quot;El tipo de persona no es correcto&quot;);</span>
         }
         try {
-<span class="nc" id="L15">            LocalDate.parse(clienteDto.getFechaNacimiento());</span>
-<span class="nc" id="L16">        } catch (Exception e) {</span>
-<span class="nc" id="L17">            throw new IllegalArgumentException(&quot;Error en el formato de fecha&quot;);</span>
-<span class="nc" id="L18">        }</span>
-<span class="nc" id="L19">    }</span>
+<span class="fc" id="L15">            LocalDate.parse(clienteDto.getFechaNacimiento());</span>
+<span class="fc" id="L16">        } catch (Exception e) {</span>
+<span class="fc" id="L17">            throw new IllegalArgumentException(&quot;Error en el formato de fecha&quot;);</span>
+<span class="fc" id="L18">        }</span>
+<span class="fc" id="L19">    }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

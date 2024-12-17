@@ -10,36 +10,36 @@ import ar.edu.utn.frbb.tup.persistence.entity.PrestamoEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-<span class="nc" id="L13">public class PrestamoDao extends AbstractBaseDao {</span>
+<span class="fc" id="L13">public class PrestamoDao extends AbstractBaseDao {</span>
 <span class="fc" id="L14">    private static final AtomicInteger idCounter = new AtomicInteger(1); // Comienza desde 1</span>
 
     private int generarIdUnico() {
-<span class="nc" id="L17">        return idCounter.getAndIncrement(); // Obtiene el valor actual y luego lo incrementa</span>
+<span class="fc" id="L17">        return idCounter.getAndIncrement(); // Obtiene el valor actual y luego lo incrementa</span>
     }
 
     public void almacenarDatosPrestamo(Prestamo prestamo) {
-<span class="nc" id="L21">        PrestamoEntity prestamoEntity = new PrestamoEntity(prestamo, generarIdUnico());</span>
-<span class="nc" id="L22">        getInMemoryDatabase().put(prestamoEntity.getId(), prestamoEntity);</span>
-<span class="nc" id="L23">    }</span>
+<span class="fc" id="L21">        PrestamoEntity prestamoEntity = new PrestamoEntity(prestamo, generarIdUnico());</span>
+<span class="fc" id="L22">        getInMemoryDatabase().put(prestamoEntity.getId(), prestamoEntity);</span>
+<span class="fc" id="L23">    }</span>
 
     public List&lt;Prestamo&gt; getPrestamosByCliente(int dni) {
-<span class="nc" id="L26">        List&lt;Prestamo&gt; prestamosCliente = new ArrayList&lt;Prestamo&gt;();</span>
+<span class="fc" id="L26">        List&lt;Prestamo&gt; prestamosCliente = new ArrayList&lt;Prestamo&gt;();</span>
 
-<span class="nc bnc" id="L28" title="All 2 branches missed.">        for (Object valor : getInMemoryDatabase().values()) {</span>
-<span class="nc bnc" id="L29" title="All 2 branches missed.">            if (valor.getClass().equals(PrestamoEntity.class)) {</span>
-<span class="nc" id="L30">                PrestamoEntity prestamo = (PrestamoEntity) valor;</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">                if (prestamo.getNumeroCliente() == dni) {</span>
-<span class="nc" id="L32">                    prestamosCliente.add(prestamo.toPrestamo());</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        for (Object valor : getInMemoryDatabase().values()) {</span>
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">            if (valor.getClass().equals(PrestamoEntity.class)) {</span>
+<span class="fc" id="L30">                PrestamoEntity prestamo = (PrestamoEntity) valor;</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">                if (prestamo.getNumeroCliente() == dni) {</span>
+<span class="fc" id="L32">                    prestamosCliente.add(prestamo.toPrestamo());</span>
                 }
             }
-<span class="nc" id="L35">        }</span>
+<span class="fc" id="L35">        }</span>
 
-<span class="nc" id="L37">        return prestamosCliente;</span>
+<span class="fc" id="L37">        return prestamosCliente;</span>
     }
 
     @Override
     protected String getEntityName() {
-<span class="nc" id="L42">        return &quot;Prestamo&quot;;</span>
+<span class="fc" id="L42">        return &quot;Prestamo&quot;;</span>
     }
 
 }

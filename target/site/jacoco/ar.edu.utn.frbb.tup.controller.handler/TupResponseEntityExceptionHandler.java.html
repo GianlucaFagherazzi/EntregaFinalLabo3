@@ -12,7 +12,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-<span class="nc" id="L15">public class TupResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {</span>
+<span class="fc" id="L15">public class TupResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {</span>
 
     @ExceptionHandler(value = { TipoCuentaAlreadyExistsException.class, IllegalArgumentException.class })
     protected ResponseEntity&lt;Object&gt; handleMateriaNotFound(Exception ex, WebRequest request) {

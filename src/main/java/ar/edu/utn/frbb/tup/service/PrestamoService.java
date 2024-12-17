@@ -115,9 +115,6 @@ public class PrestamoService {
         List<PrestamoConsultaCliente> prestamos = new ArrayList<PrestamoConsultaCliente>();
         for (Prestamo p : prestamosCliente) {
             PrestamoConsultaCliente prestamoCliente = new PrestamoConsultaCliente(p);
-            prestamoCliente.setPrestamoId(p.getIdPrestamo());
-            prestamoCliente.setPagosRealizados(p.getPlanPagos().size());
-            prestamoCliente.setSaldoRestante(calcularSaldoRestante(p, prestamoCliente.getPagosRealizados()));
             prestamos.add(prestamoCliente);
         }
         consulta.setPrestamos(prestamos);
@@ -127,17 +124,6 @@ public class PrestamoService {
 
     List<Prestamo> getPrestamosCliente(int dni) {
         return prestamoDao.getPrestamosByCliente(dni);
-    }
-
-    private double calcularSaldoRestante(Prestamo prestamo, int pagosRealizados) {
-        double saldoTotal = prestamo.getMontoPrestamo() + prestamo.getInteresTotal();
-        double saldoActual = 0;
-        if (pagosRealizados != 0) {
-            saldoActual = (prestamo.getPlanPagos().get(0).getMonto()) * pagosRealizados;
-        }
-
-        return saldoTotal - saldoActual;
-
     }
 
     public static String verificaScore(long dni) {

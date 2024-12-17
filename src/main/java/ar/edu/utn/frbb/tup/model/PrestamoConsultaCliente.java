@@ -12,6 +12,9 @@ public class PrestamoConsultaCliente {
         this.monto = prestamo.getMontoPrestamo();
         this.plazoMeses = prestamo.getPlazoMeses();
         this.intereses = prestamo.getInteresTotal();
+        this.prestamoId = prestamo.getIdPrestamo();
+        this.pagosRealizados = prestamo.getPlanPagos().size();
+        this.saldoRestante = calcularSaldoRestante(prestamo, pagosRealizados);
     }
 
     public int getPrestamoId() {
@@ -60,5 +63,15 @@ public class PrestamoConsultaCliente {
 
     public void setSaldoRestante(double saldoRestante) {
         this.saldoRestante = saldoRestante;
+    }
+
+    private double calcularSaldoRestante(Prestamo prestamo, int pagosRealizados) {
+        double saldoTotal = prestamo.getMontoPrestamo() + prestamo.getInteresTotal();
+        double saldoActual = 0;
+        if (pagosRealizados != 0) {
+            saldoActual = (prestamo.getPlanPagos().get(0).getMonto()) * pagosRealizados;
+        }
+        return saldoTotal - saldoActual;
+
     }
 }

@@ -3,19 +3,18 @@ import ar.edu.utn.frbb.tup.controller.PrestamoDto;
 import org.springframework.stereotype.Component;
 
 @Component
-<span class="nc" id="L6">public class PrestamoValidator {</span>
+<span class="fc" id="L6">public class PrestamoValidator {</span>
     public static void validate(PrestamoDto prestamoDto){
-<span class="nc" id="L8">        validateMonto(prestamoDto.getMontoPrestamo());</span>
-<span class="nc" id="L9">    }</span>
-    
+<span class="fc" id="L8">        validateMonto(prestamoDto.getMontoPrestamo());</span>
+<span class="fc" id="L9">    }</span>
 
     private static void validateMonto(double monto){
-<span class="nc bnc" id="L13" title="All 2 branches missed.">        if (monto &lt; 0){</span>
-<span class="nc" id="L14">            throw new IllegalArgumentException(&quot;Debe establecer un monto en positivo&quot;);</span>
+<span class="fc bfc" id="L12" title="All 2 branches covered.">        if (monto &lt; 0){</span>
+<span class="fc" id="L13">            throw new IllegalArgumentException(&quot;Debe establecer un monto en positivo&quot;);</span>
         }
-<span class="nc bnc" id="L16" title="All 2 branches missed.">        if (monto == 0){</span>
-<span class="nc" id="L17">            throw new IllegalArgumentException(&quot;Debe establecer cuanto va a pedir&quot;);</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">        if (monto == 0){</span>
+<span class="fc" id="L16">            throw new IllegalArgumentException(&quot;Debe establecer cuanto va a pedir&quot;);</span>
         }
-<span class="nc" id="L19">    }</span>
+<span class="fc" id="L18">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

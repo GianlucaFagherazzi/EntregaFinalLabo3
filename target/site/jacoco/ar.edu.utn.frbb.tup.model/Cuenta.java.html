@@ -19,13 +19,13 @@ public class Cuenta {
 <span class="fc" id="L19">        this.fechaCreacion = generarFechaCreacion();</span>
 <span class="fc" id="L20">    }</span>
 
-<span class="nc" id="L22">    public Cuenta(CuentaDto cuentaDto){</span>
-<span class="nc" id="L23">        this.tipoCuenta = TipoCuenta.fromString(cuentaDto.getTipoCuenta());</span>
-<span class="nc" id="L24">        this.moneda = TipoMoneda.fromString(cuentaDto.getMoneda());</span>
-<span class="nc" id="L25">        this.fechaCreacion = generarFechaCreacion();</span>
-<span class="nc" id="L26">        this.balance = 0.0;</span>
-<span class="nc" id="L27">        this.numeroCuenta = generarNumeroCuenta();</span>
-<span class="nc" id="L28">    }</span>
+<span class="fc" id="L22">    public Cuenta(CuentaDto cuentaDto){</span>
+<span class="fc" id="L23">        this.tipoCuenta = TipoCuenta.fromString(cuentaDto.getTipoCuenta());</span>
+<span class="fc" id="L24">        this.moneda = TipoMoneda.fromString(cuentaDto.getMoneda());</span>
+<span class="fc" id="L25">        this.fechaCreacion = generarFechaCreacion();</span>
+<span class="fc" id="L26">        this.balance = 0.0;</span>
+<span class="fc" id="L27">        this.numeroCuenta = generarNumeroCuenta();</span>
+<span class="fc" id="L28">    }</span>
 
     //auxiliares
     private int generarNumeroCuenta() {
@@ -49,23 +49,23 @@ public class Cuenta {
 <span class="fc" id="L49">    }</span>
 
     public int getNumeroCuenta() {
-<span class="nc" id="L52">        return numeroCuenta;</span>
+<span class="fc" id="L52">        return numeroCuenta;</span>
     }
 
     public void setNumeroCuenta(int numeroCuenta) {
-<span class="nc" id="L56">        this.numeroCuenta = numeroCuenta;</span>
-<span class="nc" id="L57">    }</span>
+<span class="fc" id="L56">        this.numeroCuenta = numeroCuenta;</span>
+<span class="fc" id="L57">    }</span>
 
     public LocalDateTime getFechaCreacion() {
-<span class="nc" id="L60">        return fechaCreacion;</span>
+<span class="fc" id="L60">        return fechaCreacion;</span>
     }
 
     public void setFechaCreacion(LocalDateTime fechaCreacion) {
-<span class="nc" id="L64">        this.fechaCreacion = fechaCreacion;</span>
-<span class="nc" id="L65">    }</span>
+<span class="fc" id="L64">        this.fechaCreacion = fechaCreacion;</span>
+<span class="fc" id="L65">    }</span>
 
     public double getBalance() {
-<span class="nc" id="L68">        return balance;</span>
+<span class="fc" id="L68">        return balance;</span>
     }
 
     public void setBalance(double balance) {
