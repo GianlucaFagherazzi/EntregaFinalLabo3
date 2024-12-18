@@ -67,8 +67,8 @@ import org.springframework.stereotype.Service;
 <span class="fc" id="L67">    }</span>
 
     public List&lt;Cliente&gt; obtenerTodosClientes() {
-<span class="nc" id="L70">        List&lt;Cliente&gt; clientes = clienteDao.findAll();</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">        return clientes.isEmpty() ? null : clientes;</span>
+<span class="fc" id="L70">        List&lt;Cliente&gt; clientes = clienteDao.findAll();</span>
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">        return clientes.isEmpty() ? null : clientes;</span>
     }
     
 }

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: ar.edu.utn.frbb.tup.service.ClienteServiceTest
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.082 s - in ar.edu.utn.frbb.tup.service.ClienteServiceTest
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.099 s - in ar.edu.utn.frbb.tup.service.ClienteServiceTest

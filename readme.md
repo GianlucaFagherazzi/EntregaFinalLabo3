@@ -1,8 +1,3 @@
-ClienteService maneja la lógica empresarial.
-ClienteDAO interactúa con la base de datos.
-ClienteDTO controla los datos expuestos al cliente.
-Cliente representa el modelo de datos de negocio
-
 # TP Final Gianluca Fagherazzi
 
 
@@ -14,7 +9,7 @@ Cliente representa el modelo de datos de negocio
 - [Pom.xml](#Pom.xml)
 
 ## Introduccion
-Este proyecto es un servicio RESTful desarrollado en Java utilizando Spring Boot. Se trata de una aplicación que permite simular ciertas operaciones de un banco, como la creación de clientes, cuentas y préstamos.
+Este proyecto es un servicio RESTfull desarrollado en Java utilizando Spring Boot. Se trata de una aplicación que permite simular ciertas operaciones de un banco, como la creación de clientes, cuentas y préstamos.
 
 
 ## Ejemplos
@@ -58,10 +53,50 @@ Prestamo:
 * POST api/prestamo - Crea un nuevo préstamo.
 
 
-## Funcionamiento
+## Funcionamiento  
+    Controller:
+        - Contiene los métodos que se encargan de manejar las solicitudes HTTP y de interactuar con los servicios y repositorios correspondientes.
 
+    Model:
+        - Define las clases que representan los objetos de negocio y sus relaciones.
+
+    Persistence:
+        - Contiene las clases que se encargan de interactuar con la base de datos, la cual esta simulada en memoria.
+
+    Service:
+        - Contiene la lógica de negocio.
+        - En este caso, se utiliza para validar los datos de entrada y realizar operaciones de negocio.
+
+    EntidadesDao:
+        - Define las interfaces que se encargan de interactuar con la base de datos.
+
+    EntidadesDto
+        - Define las clases que se encargan de mapear los datos que conectan al cliente con la base de datos.
+
+    EntidadesEntity:
+        - Define las clases que se encargan de mapear los datos de la base de datos a objetos de negocio y viceversa.
 
 
 ## Pom.xml
+### Plugins
+maven-compiler-plugin
+* Configura la versión del compilador de Java.
 
+spring-boot-maven-plugin
+* Proporciona soporte para empaquetar tu aplicación como un archivo ejecutable (JAR o WAR) y simplifica su ejecución
 
+jacoco-maven-plugin
+* Genera reportes de cobertura de código. Evalúa cuánto de tu código es cubierto por los tests.
+
+maven-clean-plugin
+*  Elimina archivos generados en el proceso de construcción (target/) para empezar desde cero
+
+maven-surefire-plugin
+* Ejecuta las pruebas unitarias durante la fase de test del ciclo de vida de Maven.
+
+### Dependencias
+spring-boot-starter-web
+* Proporciona soporte para construir aplicaciones web, incluyendo un servidor embebid
+
+spring-boot-starter-test
+* Proporciona herramientas y librerías necesarias para realizar pruebas, como JUnit y Mockito.

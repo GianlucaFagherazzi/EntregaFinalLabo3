@@ -10,6 +10,7 @@ import ar.edu.utn.frbb.tup.model.TipoPersona;
 import ar.edu.utn.frbb.tup.model.TipoMoneda;
 import ar.edu.utn.frbb.tup.model.TipoCuenta;
 import ar.edu.utn.frbb.tup.persistence.CuentaDao;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -20,9 +21,11 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,11 +34,11 @@ public class ClienteServiceTest {
     @Mock
     private ClienteDao clienteDao;
 
-    @InjectMocks
-    private ClienteService clienteService;
-
     @Mock
     private CuentaDao cuentaDao;
+
+    @InjectMocks
+    private ClienteService clienteService;
 
     @BeforeAll
     public void setUp() {
@@ -51,7 +54,6 @@ public class ClienteServiceTest {
         assertThrows(IllegalArgumentException.class, () -> clienteService.darDeAltaCliente(clienteMenorDeEdad));
     }
 
-
     // El cliente ya existe
     @Test
     public void testClienteAlreadyExistsException() throws ClienteAlreadyExistsException {
@@ -65,29 +67,6 @@ public class ClienteServiceTest {
         when(clienteDao.find(26456437, false)).thenReturn(new Cliente());
 
         assertThrows(ClienteAlreadyExistsException.class, () -> clienteService.darDeAltaCliente(pepeRino));
-    }
-
-    // Agregar una cuenta
-    @Test
-    public void testAgregarCuentaAClienteExito() throws TipoCuentaAlreadyExistsException {
-        Cliente pepeRino = new Cliente();
-        pepeRino.setDni(26456439);
-        pepeRino.setNombre("Pepe");
-        pepeRino.setApellido("Rino");
-        pepeRino.setFechaNacimiento(LocalDate.of(1978, 3, 25));
-        pepeRino.setTipoPersona(TipoPersona.PERSONA_FISICA);
-
-        Cuenta cuenta = new Cuenta();
-        cuenta.setMoneda(TipoMoneda.PESOS);
-        cuenta.setBalance(500000);
-        cuenta.setTipoCuenta(TipoCuenta.CAJA_AHORRO);
-
-        when(clienteDao.find(26456439, true)).thenReturn(pepeRino);
-
-        clienteService.agregarCuenta(cuenta, pepeRino.getDni());
-
-        assertEquals(1, pepeRino.getCuentas().size());
-        assertEquals(pepeRino.getDni(), cuenta.getTitular());
     }
 
     // Cuenta ya existe
@@ -123,6 +102,32 @@ public class ClienteServiceTest {
         assertEquals(luciano.getDni(), cuenta.getTitular());
     }
 
+    // Agregar una cuenta
+    @Test
+    public void testAgregarCuentaAClienteExito() throws TipoCuentaAlreadyExistsException {
+        Cliente cliente = new Cliente();
+        cliente.setDni(12345678);
+        cliente.setTipoPersona(TipoPersona.PERSONA_FISICA);
+        cliente.setBanco("Banco Test");
+        cliente.setNombre("Juan");
+        cliente.setApellido("Perez");
+        cliente.setFechaAlta(LocalDate.of(2023, 1, 1));
+        cliente.setFechaNacimiento(LocalDate.of(1990, 5, 10));
+
+        Cuenta cuenta = new Cuenta();
+        cuenta.setNumeroCuenta(1);
+        cuenta.setBalance(1000.0);
+        cuenta.setTitular(12345678);
+        cuenta.setTipoCuenta(TipoCuenta.CAJA_AHORRO);
+        cuenta.setMoneda(TipoMoneda.PESOS);
+
+        when(clienteDao.find(12345678, true)).thenReturn(cliente);
+        clienteService.agregarCuenta(cuenta, cliente.getDni());
+
+        assertEquals(1, cliente.getCuentas().size());
+        assertEquals(cliente.getDni(), cuenta.getTitular());
+    }
+
     // Agregan 2 cuentas con exito
     @Test
     public void testAgregarDosCuentasSucess() throws TipoCuentaAlreadyExistsException {
@@ -149,9 +154,13 @@ public class ClienteServiceTest {
         when(clienteDao.find(12345678, true)).thenReturn(luciano);
         clienteService.agregarCuenta(cuenta2, luciano.getDni());
 
-        assertEquals(2, luciano.getCuentas().size());
+        when(cuentaDao.getCuentasByCliente(anyInt())).thenReturn(List.of(cuenta, cuenta2));
+        List<Cuenta> cuentas = cuentaDao.getCuentasByCliente(12345678);
 
-        // chequea el tipo de cuenta
+        assertEquals(2, luciano.getCuentas().size());
+        assertEquals(2, cuentas.size());
+        assertEquals(luciano.getDni(), cuentas.get(0).getTitular());
+
         assertEquals(TipoCuenta.CAJA_AHORRO, cuenta.getTipoCuenta());
         assertEquals(TipoCuenta.CUENTA_CORRIENTE, cuenta2.getTipoCuenta());
 
@@ -161,7 +170,7 @@ public class ClienteServiceTest {
 
     // Agregar dos cuentas con exito, una cuenta corriente y una caja de ahorro
     @Test
-    public void agregarDosCajasDeAhorroDifMonedaSucess() throws TipoCuentaAlreadyExistsException {
+    public void testAgregarDosCajasDeAhorroDifMonedaSucess() throws TipoCuentaAlreadyExistsException {
         Cliente luciano = new Cliente();
         luciano.setDni(12345678);
         luciano.setNombre("Pepe");
@@ -197,7 +206,7 @@ public class ClienteServiceTest {
 
     // Buscar cliente por dni
     @Test
-    public void buscarClientePorDniExito() {
+    public void testBuscarClientePorDniExito() {
         Cliente luciano = new Cliente();
         luciano.setDni(12345678);
         luciano.setNombre("Pepe");
@@ -215,8 +224,27 @@ public class ClienteServiceTest {
 
     // buscar cliente por dni falla
     @Test
-    public void buscarClientePorDniFalla() {
+    public void testBuscarClientePorDniFalla() {
         when(clienteDao.find(12345678, true)).thenReturn(null);
         assertThrows(IllegalArgumentException.class, () -> clienteService.buscarClientePorDni(12345678));
     }
+
+    //obtener todos los clientes
+    @Test
+    public void testObtenerClientes() {
+        Cliente cliente1 = new Cliente();
+        cliente1.setDni(10000001);
+        Cliente cliente2 = new Cliente();
+        cliente2.setDni(10000002);
+
+        when(clienteDao.findAll()).thenReturn(List.of(cliente1, cliente2));
+
+        List<Cliente> clientes = clienteService.obtenerTodosClientes();
+
+        assertEquals(2, clientes.size());
+        assertTrue(clientes.contains(cliente1));
+        assertTrue(clientes.contains(cliente2));
+    }
+
+
 }
