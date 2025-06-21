@@ -1,6 +1,7 @@
 package ar.edu.utn.frbb.tup.controller.validator;
-import ar.edu.utn.frbb.tup.controller.PrestamoDto;
 import org.springframework.stereotype.Component;
+
+import ar.edu.utn.frbb.tup.controller.dto.PrestamoDto;
 
 @Component
 public class PrestamoValidator {

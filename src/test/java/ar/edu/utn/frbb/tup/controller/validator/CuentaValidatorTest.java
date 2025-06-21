@@ -1,7 +1,8 @@
 package ar.edu.utn.frbb.tup.controller.validator;
 
-import ar.edu.utn.frbb.tup.controller.CuentaDto;
 import org.junit.jupiter.api.Test;
+
+import ar.edu.utn.frbb.tup.controller.dto.CuentaDto;
 
 import static org.junit.jupiter.api.Assertions.*;
 

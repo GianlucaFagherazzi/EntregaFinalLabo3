@@ -93,10 +93,3 @@ maven-clean-plugin
 
 maven-surefire-plugin
 * Ejecuta las pruebas unitarias durante la fase de test del ciclo de vida de Maven.
-
-### Dependencias
-spring-boot-starter-web
-* Proporciona soporte para construir aplicaciones web, incluyendo un servidor embebid
-
-spring-boot-starter-test
-* Proporciona herramientas y librerías necesarias para realizar pruebas, como JUnit y Mockito.

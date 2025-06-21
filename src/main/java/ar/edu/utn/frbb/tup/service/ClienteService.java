@@ -1,12 +1,12 @@
 package ar.edu.utn.frbb.tup.service;
 
-import ar.edu.utn.frbb.tup.controller.ClienteDto;
+import ar.edu.utn.frbb.tup.controller.dto.ClienteDto;
 import ar.edu.utn.frbb.tup.model.Cliente;
 import ar.edu.utn.frbb.tup.model.Cuenta;
 import ar.edu.utn.frbb.tup.model.exception.ClienteAlreadyExistsException;
 import ar.edu.utn.frbb.tup.model.exception.TipoCuentaAlreadyExistsException;
-import ar.edu.utn.frbb.tup.persistence.ClienteDao;
-import ar.edu.utn.frbb.tup.persistence.CuentaDao;
+import ar.edu.utn.frbb.tup.persistence.dao.ClienteDao;
+import ar.edu.utn.frbb.tup.persistence.dao.CuentaDao;
 
 import java.util.List;
 

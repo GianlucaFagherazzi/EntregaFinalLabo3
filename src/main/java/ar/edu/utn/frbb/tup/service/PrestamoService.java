@@ -6,16 +6,16 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import ar.edu.utn.frbb.tup.controller.PrestamoDto;
-import ar.edu.utn.frbb.tup.controller.PrestamoOutputDto;
-import ar.edu.utn.frbb.tup.controller.PrestamoConsultaDto;
 import ar.edu.utn.frbb.tup.model.PrestamoConsultaCliente;
+import ar.edu.utn.frbb.tup.controller.dto.PrestamoConsultaDto;
+import ar.edu.utn.frbb.tup.controller.dto.PrestamoDto;
+import ar.edu.utn.frbb.tup.controller.dto.PrestamoOutputDto;
 import ar.edu.utn.frbb.tup.model.Cuenta;
 import ar.edu.utn.frbb.tup.model.exception.*;
+import ar.edu.utn.frbb.tup.persistence.dao.PrestamoDao;
 import ar.edu.utn.frbb.tup.model.Prestamo;
 import ar.edu.utn.frbb.tup.model.TipoMoneda;
 import ar.edu.utn.frbb.tup.model.TipoCuenta;
-import ar.edu.utn.frbb.tup.persistence.PrestamoDao;
 
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,8 @@
 package ar.edu.utn.frbb.tup.controller.validator;
 
-import ar.edu.utn.frbb.tup.controller.PrestamoDto;
 import org.junit.jupiter.api.Test;
+
+import ar.edu.utn.frbb.tup.controller.dto.PrestamoDto;
 
 import static org.junit.jupiter.api.Assertions.*;
 

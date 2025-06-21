@@ -1,9 +1,9 @@
 package ar.edu.utn.frbb.tup.model;
 
-import ar.edu.utn.frbb.tup.controller.PrestamoDto;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import ar.edu.utn.frbb.tup.controller.dto.PrestamoDto;
 
 public class Prestamo {
     private int numeroCliente;

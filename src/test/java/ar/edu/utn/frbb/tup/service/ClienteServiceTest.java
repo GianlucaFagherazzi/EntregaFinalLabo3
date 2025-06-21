@@ -1,15 +1,15 @@
 package ar.edu.utn.frbb.tup.service;
 
-import ar.edu.utn.frbb.tup.controller.ClienteDto;
 import ar.edu.utn.frbb.tup.model.Cuenta;
 import ar.edu.utn.frbb.tup.model.exception.ClienteAlreadyExistsException;
 import ar.edu.utn.frbb.tup.model.exception.TipoCuentaAlreadyExistsException;
-import ar.edu.utn.frbb.tup.persistence.ClienteDao;
+import ar.edu.utn.frbb.tup.persistence.dao.ClienteDao;
+import ar.edu.utn.frbb.tup.persistence.dao.CuentaDao;
+import ar.edu.utn.frbb.tup.controller.dto.ClienteDto;
 import ar.edu.utn.frbb.tup.model.Cliente;
 import ar.edu.utn.frbb.tup.model.TipoPersona;
 import ar.edu.utn.frbb.tup.model.TipoMoneda;
 import ar.edu.utn.frbb.tup.model.TipoCuenta;
-import ar.edu.utn.frbb.tup.persistence.CuentaDao;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -21,8 +21,10 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -46,17 +48,19 @@ public class ClienteServiceTest {
     }
 
     // error porque el cliente es menor de edad
-    @Test
-    public void testValidatorAltaMenorEdad() {
+     @Test
+    void testValidatorAlta() {
         ClienteDto clienteMenorDeEdad = new ClienteDto();
         clienteMenorDeEdad.setFechaNacimiento(String.valueOf(LocalDate.of(2010, 1, 1)));
         clienteMenorDeEdad.setDni(12345678);
+
         assertThrows(IllegalArgumentException.class, () -> clienteService.darDeAltaCliente(clienteMenorDeEdad));
     }
 
+
     // El cliente ya existe
     @Test
-    public void testClienteAlreadyExistsException() throws ClienteAlreadyExistsException {
+    void testClienteAlreadyExistsException() throws ClienteAlreadyExistsException {
         ClienteDto pepeRino = new ClienteDto();
         pepeRino.setDni(26456437);
         pepeRino.setNombre("Pepe");
@@ -71,7 +75,7 @@ public class ClienteServiceTest {
 
     // Cuenta ya existe
     @Test
-    public void testCuentaYaExiste() throws TipoCuentaAlreadyExistsException {
+    void testCuentaYaExiste() throws TipoCuentaAlreadyExistsException {
         Cliente luciano = new Cliente();
         luciano.setDni(12345678);
         luciano.setNombre("Lucho");
@@ -104,7 +108,7 @@ public class ClienteServiceTest {
 
     // Agregar una cuenta
     @Test
-    public void testAgregarCuentaAClienteExito() throws TipoCuentaAlreadyExistsException {
+    void testAgregarCuentaAClienteExito() throws TipoCuentaAlreadyExistsException {
         Cliente cliente = new Cliente();
         cliente.setDni(12345678);
         cliente.setTipoPersona(TipoPersona.PERSONA_FISICA);
@@ -130,7 +134,7 @@ public class ClienteServiceTest {
 
     // Agregan 2 cuentas con exito
     @Test
-    public void testAgregarDosCuentasSucess() throws TipoCuentaAlreadyExistsException {
+    void testAgregarDosCuentasSucess() throws TipoCuentaAlreadyExistsException {
         Cliente luciano = new Cliente();
         luciano.setDni(12345678);
         luciano.setNombre("Lucho");
@@ -170,7 +174,7 @@ public class ClienteServiceTest {
 
     // Agregar dos cuentas con exito, una cuenta corriente y una caja de ahorro
     @Test
-    public void testAgregarDosCajasDeAhorroDifMonedaSucess() throws TipoCuentaAlreadyExistsException {
+    void testAgregarDosCajasDeAhorroDifMonedaSucess() throws TipoCuentaAlreadyExistsException {
         Cliente luciano = new Cliente();
         luciano.setDni(12345678);
         luciano.setNombre("Pepe");
@@ -206,7 +210,7 @@ public class ClienteServiceTest {
 
     // Buscar cliente por dni
     @Test
-    public void testBuscarClientePorDniExito() {
+    void testBuscarClientePorDniExito() {
         Cliente luciano = new Cliente();
         luciano.setDni(12345678);
         luciano.setNombre("Pepe");
@@ -224,14 +228,14 @@ public class ClienteServiceTest {
 
     // buscar cliente por dni falla
     @Test
-    public void testBuscarClientePorDniFalla() {
+    void testBuscarClientePorDniFalla() {
         when(clienteDao.find(12345678, true)).thenReturn(null);
         assertThrows(IllegalArgumentException.class, () -> clienteService.buscarClientePorDni(12345678));
     }
 
     //obtener todos los clientes
     @Test
-    public void testObtenerClientes() {
+    void testObtenerClientesExito() {
         Cliente cliente1 = new Cliente();
         cliente1.setDni(10000001);
         Cliente cliente2 = new Cliente();
@@ -245,6 +249,18 @@ public class ClienteServiceTest {
         assertTrue(clientes.contains(cliente1));
         assertTrue(clientes.contains(cliente2));
     }
+    
+    @Test
+    void testObtenerClientesEmpty(){
+        Cliente cliente1 = new Cliente();
+        cliente1.setDni(10000001);
+        Cliente cliente2 = new Cliente();
+        cliente2.setDni(10000002);
 
+        when(clienteDao.findAll()).thenReturn(new ArrayList<>());
 
+        List<Cliente> clientes = clienteService.obtenerTodosClientes();
+
+        assertTrue(clientes == null);
+    }
 }

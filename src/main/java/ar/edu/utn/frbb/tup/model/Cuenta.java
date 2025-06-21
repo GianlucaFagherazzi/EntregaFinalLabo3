@@ -1,8 +1,8 @@
 package ar.edu.utn.frbb.tup.model;
-import ar.edu.utn.frbb.tup.controller.CuentaDto;
-
 import java.time.LocalDateTime;
 import java.util.Random;
+
+import ar.edu.utn.frbb.tup.controller.dto.CuentaDto;
 
 public class Cuenta {
     private int titularDni;

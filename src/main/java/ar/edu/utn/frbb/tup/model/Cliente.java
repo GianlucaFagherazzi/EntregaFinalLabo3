@@ -1,10 +1,10 @@
 package ar.edu.utn.frbb.tup.model;
 
-import ar.edu.utn.frbb.tup.controller.ClienteDto;
-
 import java.time.LocalDate;
 import java.util.HashSet;   
 import java.util.Set;
+
+import ar.edu.utn.frbb.tup.controller.dto.ClienteDto;
 
 public class Cliente extends Persona{
     private TipoPersona tipoPersona;

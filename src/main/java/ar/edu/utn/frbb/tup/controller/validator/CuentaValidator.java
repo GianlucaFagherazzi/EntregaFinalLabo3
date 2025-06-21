@@ -1,6 +1,7 @@
 package ar.edu.utn.frbb.tup.controller.validator;
-import ar.edu.utn.frbb.tup.controller.CuentaDto;
 import org.springframework.stereotype.Component;
+
+import ar.edu.utn.frbb.tup.controller.dto.CuentaDto;
 
 @Component
 public class CuentaValidator {

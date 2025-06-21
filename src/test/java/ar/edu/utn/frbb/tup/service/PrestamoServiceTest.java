@@ -1,9 +1,12 @@
 package ar.edu.utn.frbb.tup.service;
 
-import ar.edu.utn.frbb.tup.controller.PrestamoConsultaDto;
+import ar.edu.utn.frbb.tup.controller.dto.PrestamoConsultaDto;
+import ar.edu.utn.frbb.tup.controller.dto.PrestamoDto;
+import ar.edu.utn.frbb.tup.model.Cuenta;
 import ar.edu.utn.frbb.tup.model.Cuota;
 import ar.edu.utn.frbb.tup.model.Prestamo;
-import ar.edu.utn.frbb.tup.persistence.PrestamoDao;
+import ar.edu.utn.frbb.tup.persistence.dao.PrestamoDao;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -17,7 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyIterable;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -26,6 +31,9 @@ class PrestamoServiceTest {
 
     @Mock
     private PrestamoDao prestamoDao;
+
+    @Mock
+    private PrestamoDto prestamoDto;
 
     @InjectMocks
     private PrestamoService prestamoService;
@@ -78,5 +86,26 @@ class PrestamoServiceTest {
         assertThrows(IllegalArgumentException.class, () -> {
             prestamoService.pedirConsultaPrestamos(123456789);
         });
+    }
+
+    //getCuentaPermitida (4)
+    //validator (4)
+    //verificaScore (4)
+    //establecerMensajeScoring (3)
+    //pedirPrestamo(2)
+    //calcularScoring(2)
+    @Test
+    void testPedirPrestamo() {
+        Prestamo prestamo = new Prestamo(prestamoDto);
+        prestamo.setNumeroCliente(123456789);
+        prestamo.setMontoPrestamo(4000.20);
+        prestamo.setPlazoMeses(6);
+        prestamo.setInteresTotal(2000.10);
+        prestamo.setEstado("APROBADO");
+        prestamo.setMensaje("El monto del prestamo fue acreditado a su cuenta");
+        
+        
+
+
     }
 }

@@ -1,5 +1,8 @@
 package ar.edu.utn.frbb.tup.controller;
 
+import ar.edu.utn.frbb.tup.controller.dto.PrestamoConsultaDto;
+import ar.edu.utn.frbb.tup.controller.dto.PrestamoDto;
+import ar.edu.utn.frbb.tup.controller.dto.PrestamoOutputDto;
 import ar.edu.utn.frbb.tup.controller.validator.PrestamoValidator;
 import ar.edu.utn.frbb.tup.model.exception.PrestamoRechazadoException;
 import ar.edu.utn.frbb.tup.service.PrestamoService;
