@@ -1,5 +1,17 @@
 # TP Final Gianluca Fagherazzi
 
+## Instalacion
+Para ejecutar este proyecto, es necesario tener instalado JDK de java y Maven. Una vez que se tengan estos requisitos, se puede ejecutar el siguiente comando en la terminal:
+mvn clean install
+Esto descargará todas las dependencias necesarias y compilará el proyecto.
+
+## Ejecucion
+Para ejecutar el proyecto, se puede ejecutar el siguiente comando en la terminal:
+mvn spring-boot:run
+Esto iniciará el servidor de Spring Boot y el proyecto estará disponible en http://localhost:8080.
+
+Para ejecutar las pruebas unitarias, se puede ejecutar el siguiente comando en la terminal:
+mvn clean test
 
 ## MENU
 - [Introduccion](#Introduccion)
@@ -75,6 +87,45 @@ Prestamo:
 
     EntidadesEntity:
         - Define las clases que se encargan de mapear los datos de la base de datos a objetos de negocio y viceversa.
+
+ ┌────────────────────┐
+ │     Cliente        │
+ └────────┬───────────┘
+          │ (1) Solicitud HTTP (REST API)
+          ▼
+ ┌────────────────────┐
+ │     Controller     │
+ └────────┬───────────┘
+          │ (2) Llama a método del Service
+          ▼
+ ┌────────────────────┐
+ │      Service       │
+ └────┬─────────┬─────┘
+      │         │
+ (3) Validación │
+      │         ▼
+      │   ┌────────────────────┐
+      │   │   EntidadesDto     │ ◄──┐
+      │   └────────────────────┘    │
+      ▼                             │
+(4) Llama a método del DAO          │
+ ┌────────────────────┐             │
+ │  EntidadesDao (IF) │────────┐    │
+ └────────┬───────────┘        │    │
+          │ (5) Llama a        │    │
+          ▼     Repositorio    │    │
+ ┌────────────────────┐        │    │
+ │   Persistence      │◄───────┘    │
+ └────────┬───────────┘             │
+          │ (6) Accede a            │
+          ▼     EntidadesEntity     │
+ ┌────────────────────┐             │
+ │  EntidadesEntity   │─────────────┘
+ └────────────────────┘
+
+(7) Se transforma Entity -> DTO (o viceversa)
+(8) Respuesta vuelve por el mismo camino hasta el Controller
+(9) Controller devuelve respuesta HTTP al Cliente
 
 
 ## Pom.xml
